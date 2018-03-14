@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>welcome</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+
+
+
+
+
+
+<link
+	href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/css/jquery-editable.css"
+	rel="stylesheet" />
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js"></script>
+</head>
+<body>
+
+	<div class="container-fluid">
+
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+			<a class="navbar-brand text-light" href="#"
+				th:text="welcome +' ' +${username}">Mosquito</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end"
+				id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item active"><a class="nav-link text-light"
+						th:href="@{welcome}">Home <span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link text-light"
+						th:href="@{CreateProject}" href="ViewProject">Create Project</a></li>
+					<li class="nav-item"><a class="nav-link text-light" href="#">Resource</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light"
+						th:href="@{logout}" href=".html">Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!--  create project  -->
+
+
+		<h3 th:text="${msg}"></h3>
+		<div class="d-flex justify-content-center">
+			<div class="card text-center" style="width: 100rem;">
+				<div class="card-body">
+					<h5 class="card-title text-danger">View Project Details</h5>
+
+
+
+
+					<!-- View Project -->
+
+
+					<div class="container-fluid">
+						<table class="table border">
+							<thead>
+								<tr>
+									<th>Project Name</th>
+									<th>Project Type</th>
+									<th>Project Date</th>
+									<th>Project Decrption</th>
+									<th>Project ETA</th>
+									<th>Project Status</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="proj:${projects}">
+									<td><a href="" name="pname" data-type="text"
+										th:attr="data-pk=${proj.getId()}" data-url="updateProjectData"
+										data-title="Enter username" data-name="pname"
+										class="icon-pencil username"
+										th:text="${proj.getProjectName()}">Project Name</a></td>
+
+									<td
+										th:text="${proj.getProjectType()}">Project Type</td>
+
+
+									<td><a href="" data-type="text"
+										th:attr="data-pk=${proj.getId()}" data-url="updateProjectData"
+										data-title="Enter username" data-name="pDate"
+										class="icon-pencil username"
+										th:text="${proj.getProjectDate()}">Project Name</a></td>
+
+
+									<td><a href="" data-type="text"
+										th:attr="data-pk=${proj.getId()}" data-url="updateProjectData"
+										data-title="Enter username" data-name="pDescription"
+										class="icon-pencil username"
+										th:text="${proj.getProjectDescription()}">Project Name</a></td>
+
+
+									<td><a href="" data-type="date"
+										th:attr="data-pk=${proj.getId()}" data-url="updateProjectData"
+										data-title="Enter username" data-name="pETA"
+										class="icon-pencil username" th:text="${proj.getETA()}">Project
+											Name</a></td>
+
+
+
+									<td><a href="" data-type="radio"
+										th:attr="data-pk=${proj.getId()}" data-url="updateProjectData"
+										data-title="Enter username" data-name="pStatus"
+										class="icon-pencil username"
+										th:text="${proj.isProjectStatus()}">Project Name</a></td>
+
+
+								</tr>
+								<tr>
+
+								</tr>
+							</tbody>
+
+
+						</table>
+
+
+					</div>
+
+
+
+
+				</div>
+
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+
+
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			if (window.location.href.indexOf('#viewProjectModel') != -1) {
+				$('#viewProjectModel').modal('show');
+			}
+
+		});
+
+		$.fn.editable.defaults.mode = 'inline';
+
+		$(document).ready(function() {
+			$('.username').editable();
+		});
+
+		$(".username").each(function() {
+			var data = $(this).data();
+			console.log(data);
+		});
+	</script>
+</body>
+</html>
